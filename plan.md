@@ -36,7 +36,7 @@ Components:
 		- Comment Box
 			- Submission Form
 			- Login form 
-				- Should take you back to the comments list you were 	previously on.
+				- Should take you back to the page list you were 	previously on.
 
 		- Graph 
 			- Daily, Weekly, 8 week views
