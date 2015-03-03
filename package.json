@@ -2,6 +2,9 @@
   "name": "React-Notes-App",
   "version": "1.0.0",
   "description": "Week 6 project of team ARC-J.  Goal: to make a note taking app using React.js",
+  "name": "the_project",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -17,6 +20,28 @@
   },
   "homepage": "https://github.com/ARCJ-fc/React-Notes-App",
   "devDependencies": {
-    "jest-cli": "^0.4.0"
+    "jest-cli": "^0.4.0",
+  "author": "TIMOTHY",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-jest": "^0.4.0",
+    "harmonize": "^1.4.1",
+    "jest-cli": "^0.4.0",
+    "jsxhint": "^0.12.1",
+    "reactify": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.4.0"
+  },
+  "dependencies": {
+    "react": "^0.12.2",
+    "react-tools": "^0.12.2"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
   }
 }
