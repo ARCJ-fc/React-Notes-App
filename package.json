@@ -16,6 +16,8 @@
     "url": "https://github.com/ARCJ-fc/React-Notes-App/issues"
   },
   "homepage": "https://github.com/ARCJ-fc/React-Notes-App",
+  "author": "TIMOTHY",
+  "license": "ISC",
   "devDependencies": {
     "browserify": "^9.0.3",
     "gulp": "^3.8.11",
