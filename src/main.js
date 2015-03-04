@@ -1,23 +1,6 @@
-var React 			= require("react"),
-	WhiteBoard 		= require("./components/WhiteBoard.js"),
-	PostItPoster	= require("./components/PostItPoster.js");
-
-var WhiteBoardApp = React.createClass({
-	getInitialState: function() {
-		return {data : [{name: "france", value: "pug"}, {name: "britain", value: "terrier"}]}
-	},
-	render: function() {
-		return (
-			<div>
-				<WhiteBoard data={this.state.data} />
-				<PostItPoster /> 
-			</div>
-		)
-	}
-});
-
+var React = require("react");
+var CommentBox = require("./components/CommentBox.js");
 
 React.render(
-	<WhiteBoardApp />,
-	document.getElementById("content")
-)
+    <CommentBox />, document.getElementById("content")
+    );
