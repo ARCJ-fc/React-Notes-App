@@ -1,7 +1,4 @@
 {
-  "name": "React-Notes-App",
-  "version": "1.0.0",
-  "description": "Week 6 project of team ARC-J.  Goal: to make a note taking app using React.js",
   "name": "the_project",
   "version": "1.0.0",
   "description": "",
@@ -13,18 +10,17 @@
     "type": "git",
     "url": "https://github.com/ARCJ-fc/React-Notes-App.git"
   },
-  "author": "",
+  "author": "TIMOTHY",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ARCJ-fc/React-Notes-App/issues"
   },
   "homepage": "https://github.com/ARCJ-fc/React-Notes-App",
-  "author": "TIMOTHY",
-  "license": "ISC",
   "devDependencies": {
     "browserify": "^9.0.3",
     "gulp": "^3.8.11",
     "gulp-jest": "^0.4.0",
+    "harmonize": "^1.4.1",
     "jest-cli": "^0.4.0",
     "jsxhint": "^0.12.1",
     "reactify": "^1.0.0",
