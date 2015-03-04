@@ -1,10 +1,11 @@
-var React = require('react');
+var React 			= require('react'),
+	WBComments 		= require("./WBComments.js");
 
 var WhiteBoard = React.createClass({
 	render: function() {
 
 		var boardList = this.props.data.map(function(option) {
-				return <ul key={option.name}>{option.name} the {option.value}</ul>
+				return <WBComments key={option.name} name={option.name} value={option.value}/>
 		})
 
 		return (

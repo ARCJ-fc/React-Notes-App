@@ -14,7 +14,7 @@ describe("WhiteBoard", function() {
 
     // Verify that it contains the data that we want
     var header = TestUtils.findRenderedDOMComponentWithTag(
-      board, "ol");
+      board, "ul");
 
     expect(header.getDOMNode().textContent).toEqual(data[0].name + " the " + data[0].value);
  });
