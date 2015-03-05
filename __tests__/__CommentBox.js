@@ -1,27 +1,34 @@
 jest.dontMock("../src/components/CommentBox.js");
 
 describe("CommentBox", function(){
-    
-    var React       = require("react/addons");
+   
     var CommentBox  = require("../src/components/CommentBox.js");
+    var React       = require("react/addons");
     var TestUtils   = React.addons.TestUtils;
     
-    it("should render to the page", function(){
+    it("should render on the page", function(){
         
-        var comBox = TestUtils.renderIntoDocument(
-            <CommentBox />
+        var data = {text: "dog"};
+        
+        // It should successfully render onto the page
+        var comment = TestUtils.renderIntoDocument(
+            <CommentBox data={data}/>
         );
             
-        var form = TestUtils.findRenderedDOMComponentWithTag(comBox, "form");
+        // It should render a <div>.
+        var commentwrapper = TestUtils.findRenderedDOMComponentWithTag(comment, "div");
         
-        var text = TestUtils.findRenderedDOMComponentWithClass(comBox, "commentBox");
+        // It should render a <p>.
+        var commenttext = TestUtils.findRenderedDOMComponentWithTag(comment, "p");
         
+        // It should render a <button>.
+        var buttoner = TestUtils.findRenderedDOMComponentWithTag(comment, "button");
+        
+        // It should contain the text you give it
+        expect(commenttext.getDOMNode().textContent).toEqual(data.text);
+
     });
-    
-    it("should have an initial state", function() {
-        var button = TestUtils.findRenderedDOMComponentWithClass(comBox, "commentButton");
-        
-        console.log(button.getDOMNode().class)
-        TestUtils.Simulate.onChange(button.getDOMNode());
-    })
 });
+
+
+

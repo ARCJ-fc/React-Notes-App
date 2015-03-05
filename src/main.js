@@ -1,6 +1,6 @@
-var React = require("react");
-var CommentBox = require("./components/CommentBox.js");
+var React           = require("react");
+var WhiteBoardApp   = require("./components/WhiteBoardApp.js");
 
 React.render(
-    <CommentBox />, document.getElementById("content")
-    );
+    <WhiteBoardApp />, document.getElementById("content")
+);
