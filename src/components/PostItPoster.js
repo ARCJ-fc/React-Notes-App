@@ -1,16 +1,20 @@
-var React = require('react');
+var React = require("react");
 
 var PostItPoster = React.createClass({
-  render: function() {
-    return (
-      <form className="commentForm">
-        <input type="text" placeholder="name..." />
-        <input type="text" placeholder="opinion" />
-        <input type="submit" value="Post" />
-      </form>
-    );
-  }
+    onChange: function() {
+        return {}  
+    },
+    render: function(){
+        function clickHandler(e){
+            e.preventDefault();
+        }
+        return(
+            <form>
+                <input type="text" className="PostItPoster" />
+                <input type="submit" ref="commentButton" className={this.state.active} onChange={this.onChange} />
+            </form>
+        );
+    }
 });
-
 
 module.exports = PostItPoster;

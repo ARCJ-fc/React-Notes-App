@@ -1,18 +1,17 @@
-var React = require('react');
+var React = require("react");
+var CommentBox = require("./CommentBox.js")
 
 var WhiteBoard = React.createClass({
-	render: function() {
-
-		var boardList = this.props.data.map(function(option) {
-				return <ul key={option.name}>{option.name} the {option.value}</ul>
-		})
-
-		return (
-		      <ol className="boardList col-md-6 col-md-offset-3">
-		        {boardList}
-		      </ol>
-		)
-	}
+   render: function(){
+       var commentFactory = this.props.data.map(function(comment){
+           return <CommentBox key={comment.text} data={comment} />
+       });
+       return (
+        <div className="commentFactory col-md-9 col-md-offset-3">
+           {commentFactory}
+        </div>
+        );
+   } 
 });
 
 module.exports = WhiteBoard;
