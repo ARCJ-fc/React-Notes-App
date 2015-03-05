@@ -2,17 +2,19 @@ var React = require('react');
 
 var PostItPoster = React.createClass({
 	getInitialState: function() {
-		return null
+		return {text: ""};
 	},
-	onChange: function() {
+	onSubmit: function(e) {
 		e.preventDefault();
+		this.refs.commentForm.getDOMNode().textContent = "";
+		this.setState({text: ""});
 	},
 	render: function() {
 		return (
-		<form className="commentForm">
-			<input type="text" placeholder="name..." />
-			<input type="text" placeholder="opinion" />
-			<input type="submit" value="Post" onChange = {this.onChange}/>
+		<form className="commentForm" onSubmit={this.onSubmit}>
+			<input type="text" placeholder="name..." value=""/>
+			<input type="text" ref="commentForm" placeholder="opinion"/>
+			<input type="submit" value="Post"/>
 		</form>
 		);
 	}
