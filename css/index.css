@@ -1,0 +1,83 @@
+body {
+    font-size: 40px;
+    font-family: "Poiret One", cursive;
+}
+
+.comment {
+    width: 100%;
+    float: right;
+    min-height: 89px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: hsla(176, 59%, 95%, 1);
+}
+
+.button {
+    float: right;
+    width: 75px;
+    height: 50px;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    transform: translateY(25%);
+    background-color: hsla(120, 95%, 73%, 1);
+    font-size: 40px; 
+    border: none;
+}
+
+.edit {
+    float: left;
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    position: relative;
+    background-color: hsla(176, 59%, 95%, 1);
+    font-size: 20px; 
+    border: none;
+}
+
+:focus {
+    outline: none;
+}
+
+button:active {
+    border: groove;
+}
+
+p {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.commentFactory {
+    margin-top: 50px;
+}
+
+.postItForm {
+    margin-top: 50px;
+}
+
+.postItText {
+    min-height: 89px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: hsla(176, 59%, 95%, 1);
+    width: 100%;
+}
+
+.postItSubmit {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    background-color: hsla(176, 59%, 95%, 1);
+    font-size: 20px;
+    float: right;
+}

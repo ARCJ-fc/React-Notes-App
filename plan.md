@@ -9,7 +9,7 @@ MVP:
 	The ability to edit and remove comments
 	Login capacities
 	Different user permissions
-	Higher voted comments/older floating to the top
+	Higher voted comments/older floating to the top / Sorting mechanism
 	A daily 'answer rate' chart
 	Storing answered/older comments in a database
 
