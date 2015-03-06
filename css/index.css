@@ -36,6 +36,15 @@ h1 {
     border: none;
 }
 
+.voteNum {
+    float: right;
+    font-size: 30px;
+    top: 50%;
+    position: relative;
+    transform: translateY(50%);
+    padding-right: 10px;
+}
+
 .edit {
     float: left;
     width: 50px;
