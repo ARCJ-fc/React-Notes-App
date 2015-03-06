@@ -8,9 +8,9 @@ var PostItForm = React.createClass({
 	},
     render: function() {
         return (
-            <form className="col-md-3" ref="commentform" onSubmit={this.eHandler}>
-                <input type="text" className="postItText" ref="textfield" />
-                <input type="submit" className="postItSubmit" ref="textsubmit" />
+            <form className="postItForm col-md-4" onSubmit={this.eHandler}>
+                <input type="text" className="postItText" ref="postitform" />
+                <input type="submit" className="postItSubmit" />
             </form>
         );
     }

@@ -4,7 +4,9 @@ var CommentBox = React.createClass({
     render: function(){
         return (
             <div className="comment">
-                <p>{this.props.data.text}</p><button type="button" className="button glyphicon glyphicon-menu-up"/>
+            	<button type="button" className="edit glyphicon glyphicon-edit" />
+                <p>{this.props.data.text}</p>
+                <button type="button" className="button glyphicon glyphicon-menu-up"/>
             </div>
         );
     }

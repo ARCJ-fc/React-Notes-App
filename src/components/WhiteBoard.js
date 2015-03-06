@@ -7,7 +7,7 @@ var WhiteBoard = React.createClass({
            return <CommentBox key={comment.text} data={comment} />
        });
        return (
-        <div className="commentFactory col-md-9">
+        <div className="commentFactory col-md-8">
            {commentFactory}
         </div>
         );
