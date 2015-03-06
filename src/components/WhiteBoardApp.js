@@ -1,5 +1,6 @@
-var React = require("react");
+var React      = require("react");
 var WhiteBoard = require("./WhiteBoard.js");
+var PostItForm = require("./PostItForm.js");
 
 var WhiteBoardApp = React.createClass({
     getInitialState: function() {
@@ -8,6 +9,7 @@ var WhiteBoardApp = React.createClass({
     render: function(){
         return (
             <div className="whiteBoardApp">
+                <PostItForm />
                 <WhiteBoard data={this.state.data} />
             </div>
         );
