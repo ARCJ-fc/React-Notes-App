@@ -25,7 +25,8 @@ gulp.task("jest", function () {
             "js",
             "json",
             "react"
-        ]
+        ],
+        "collectCoverage": true
     }));
 });
 
