@@ -8,24 +8,31 @@ describe("CommentBox", function(){
     
     it("should render on the page", function(){
         
-        var data = {text: "dog"};
+        var data = {text: "dog", votes: '1'};
         
         // It should successfully render onto the page
         var comment = TestUtils.renderIntoDocument(
             <CommentBox data={data}/>
         );
             
-        // It should render a <div>.
+        // It should render a <div>
         var commentwrapper = TestUtils.findRenderedDOMComponentWithTag(comment, "div");
         
-        // It should render a <p>.
-        var commenttext = TestUtils.findRenderedDOMComponentWithTag(comment, "p");
+        // It should render two <p>s
+        var commenttext = TestUtils.scryRenderedDOMComponentsWithTag(comment, "p");
         
-        // It should render a <button>.
-        var buttoner = TestUtils.findRenderedDOMComponentWithTag(comment, "button");
+        // It should render two <button>s
+        var buttoner = TestUtils.scryRenderedDOMComponentsWithTag(comment, "button");
         
-        // It should contain the text you give it
-        expect(commenttext.getDOMNode().textContent).toEqual(data.text);
+        // The first <p> should contain the text you give it
+        expect(commenttext[0].getDOMNode().textContent).toEqual(data.text);
+
+        // The second <p> should display the number of votes you give it
+        expect(commenttext[1].getDOMNode().textContent).toEqual(data.votes);
+        
+        // On clicking the upvote button, the number of votes is incremented
+        TestUtils.Simulate.click(comment.refs.upvote.getDOMNode());
+        expect(commenttext[1].getDOMNode().textContent).toEqual(+data.votes+1);
 
     });
 });
