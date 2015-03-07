@@ -10,7 +10,7 @@ describe("PostItForm", function() {
         
         // Render the component into the page
         var postit = TestUtils.renderIntoDocument(
-        <PostItForm />
+        <PostItForm commentAdd={function(x) {return false;}}/>
         );
             
         // Check that it renders a form
@@ -23,18 +23,17 @@ describe("PostItForm", function() {
         var postitsubmit = TestUtils.findRenderedDOMComponentWithClass(postit, "postItSubmit");
 
         // Check that the rendered text input box is empty
-        expect(postit.refs.commentform.getDOMNode().textContent).toEqual(undefined);
+        expect(postit.refs.postitform.getDOMNode().value).toEqual(null);
         
         // On clicking the submit button, the text field is emptied
-            // Changing the textContentue of text field
-        postit.refs.commentform.getDOMNode().textContent = "asfasd";
-        // console.log(postitform.getDOMNode())
-        TestUtils.Simulate.submit(postit.refs.commentform.getDOMNode());
+            // Changing the textContent of text field
+        postit.refs.postitform.getDOMNode().value = "asfasd";
 
-        expect(postit.refs.textfield.getDOMNode().textContent).toEqual("");
-        //console.log(postit.refs.commentform.getDOMNode.textContent);  
+        TestUtils.Simulate.submit(postitform.getDOMNode());
+
+        expect(postit.refs.postitform.getDOMNode().value).toEqual("");
     })
-})
+});
 
 
 
