@@ -1,19 +1,23 @@
 var React       = require("react");
 
 var CommentEdit = React.createClass({
+    
 	confirmHandler: function(e) {
         var myProps = this.props.data;
         myProps.newText = this.refs.editBox.getDOMNode().value || this.props.data.text;
 		this.props.confirmChanges(myProps);
 	},
+
     deleteHandler: function() {
         var myProps = this.props.data;
         this.props.deleteComment(myProps);
     },
+
     successHandler: function() {
         var myProps = this.props.data;
         this.props.answeredComment(myProps)
     },
+
     render: function(){
         return (
             <div className="comment">
