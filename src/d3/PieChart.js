@@ -25,8 +25,9 @@ PieChart.update = function(el, props) {
 
 PieChart._drawPie = function(el, props) {
 
-	var data = [{name: "unanswered", value: props.data.length-1}, {name: "answered", value: props.answered.length+1}];
-
+	var data = [{name: "unanswered", value: props.data.length}, {name: "answered", value: props.answered.length}];
+	var rate = Math.floor((data[1].value / (data[0].value+data[1].value))*100);
+	console.log(rate);
 
 	PieChart.outerRadius = props.height / 2;
 	PieChart.innerRadius = props.height / 4;
@@ -50,51 +51,44 @@ PieChart._drawPie = function(el, props) {
 	  			.attr({"class": "arc"})
 			.append("path")
 				.attr({
-					"d": PieChart.arc,
+					"d": function(d) {
+						return PieChart.arc(d)
+					},
 		    		"fill": function(d, i) {
-		    			return "hsl(" + Math.floor(Math.random()*255) + ", 50%, 50%)";
+		    			return props.colours[i];
 		    		},
 				});
 
 		arcs.selectAll("path")
 			.transition()
-			.duration(1000)
-			.attr({
-	    		"fill": function(d, i) {
-	    			return "hsl(" + Math.floor(Math.random()*255) + ", 50%, 50%)";
-	    		}
-			})
+			.duration(500)
 			.attrTween("d", function(d) {
 				var z = d3.interpolate(d.startAngle, d.endAngle); 
 				return function(t) {
 					d.endAngle = z(t); 
+					console.log(d.endAngle);
 					return PieChart.arc(d);
 				}
 			})	
-			
-		// Labels
-		arcs.enter()
-			.append("text")
-			    .attr({
-			    	"transform": function(d) {
-			    		return "translate(" + PieChart.arc.centroid(d) + ")";
-			    	},
-			    	"text-anchor": "middle"
-			    	})
-		    .text(function(d) {
-		    	return d.data.name;
-		    });
 
-		arcs.selectAll("text")
-			.attr({
-			    	"transform": function(d) {
-			    		return "translate(" + PieChart.arc.centroid(d) + ")";
-			    	},
-			    	"text-anchor": "middle"
-			    	})
-		    .text(function(d) {
-		    	return d.data.name;
-		    });
+		arcs.exit().remove();
+
+	var text =	PieChart.svg.selectAll("text")
+							.data([rate])
+						
+		text.enter()
+			.append("text")
+				.attr({
+	      			// "transform": "translate(" + props.width/2 + "," + props.height/2 + ")",
+	      			"text-anchor": "middle"
+				});
+
+		text.text(function(d) {
+				return d + "%"
+			});
+
+		text.exit().remove();
+
 };
 
 module.exports = PieChart;
