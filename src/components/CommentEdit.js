@@ -20,10 +20,10 @@ var CommentEdit = React.createClass({
 
     render: function(){
         return (
-            <div className="comment">
+            <div className="comment editor">
                 <button type="button" className="confirm glyphicon glyphicon-ok" onClick={this.confirmHandler} />
                 <button type="button" className="delete glyphicon glyphicon-remove" onClick={this.deleteHandler}/>
-                <input type="text" placeholder={this.props.data.text} className="editBox" ref="editBox"/>
+                <textarea type="text" placeholder={this.props.data.text} className="editBox" ref="editBox"/>
                 <button type="button" className="button activeButton glyphicon glyphicon-thumbs-up" onClick={this.successHandler} />
             </div>
         );

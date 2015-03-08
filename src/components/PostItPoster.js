@@ -10,7 +10,7 @@ var PostItPoster = React.createClass({
         }
         return(
             <form>
-                <input type="text" className="PostItPoster" />
+                <textarea type="text" className="PostItPoster" />
                 <input type="submit" ref="commentButton" className={this.state.active} onChange={this.onChange} />
             </form>
         );

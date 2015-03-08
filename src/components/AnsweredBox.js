@@ -11,7 +11,7 @@ var AnsweredBox = React.createClass({
     render: function(){
         return (
             <div className="comment">
-            	<button type="button" className="edit glyphicon glyphicon-thumbs-up" />
+            	<button type="button" className="edit glyphicon glyphicon-thumbs-up" disabled="true" />
                 <p className="commentText">{this.props.data.text}</p>
                 <button type="button" className="button undo glyphicon glyphicon-fast-backward" ref="undo" onClick={this.clickHandler} />
                 <p className="voteNum">{this.props.data.votes}</p>

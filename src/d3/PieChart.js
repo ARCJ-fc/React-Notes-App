@@ -27,10 +27,9 @@ PieChart._drawPie = function(el, props) {
 
 	var data = [{name: "unanswered", value: props.data.length}, {name: "answered", value: props.answered.length}];
 	var rate = Math.floor((data[1].value / (data[0].value+data[1].value))*100);
-	console.log(rate);
 
-	PieChart.outerRadius = props.height / 2;
-	PieChart.innerRadius = props.height / 4;
+	PieChart.outerRadius = props.height *0.2;
+	PieChart.innerRadius = props.height *0.6;
 
 	PieChart.arc = d3.svg.arc()
 					.innerRadius(PieChart.innerRadius)
@@ -43,33 +42,51 @@ PieChart._drawPie = function(el, props) {
 					.sort(null);
 
 
-	var arcs = PieChart.svg.selectAll("g.arc")
+	var arcs = PieChart.svg.selectAll("path")
 					  		.data(PieChart.pie(data));
 
 	  	arcs.enter()
-	  		.append("g")
-	  			.attr({"class": "arc"})
-			.append("path")
+	  		.append("path")
 				.attr({
-					"d": function(d) {
-						return PieChart.arc(d)
-					},
+					"d": PieChart.arc,
 		    		"fill": function(d, i) {
 		    			return props.colours[i];
 		    		},
-				});
+				})
+			.on("mouseover", function (d, i) {
+		        d3.select(this)
+		            .transition()
+		            .duration(500)
+		            .ease('bounce')
+		            .attr('transform', function (d) {
+		              var dist = 15;
+		              d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
+		              var x = Math.sin(d.midAngle) * dist;
+		              var y = -Math.cos(d.midAngle) * dist;
+		              return 'translate(' + x + ',' + y + ')';
+            	});
+		        arcs.filter(function(e) { return e.value !== d.value; }).style('opacity',0.5);
+		    })
+		    .on('mouseout', function (d, i) {
+	            d3.select(this)
+		            .transition()
+		            .duration(500)
+		            .ease('bounce')
+		            .attr('transform', 'translate(0,0)');
+	            arcs.filter(function(e) { return e.value !== d.value; }).style('opacity',1);
+	        });
 
-		arcs.selectAll("path")
+
+		arcs.attr("d", PieChart.arc)
 			.transition()
 			.duration(500)
 			.attrTween("d", function(d) {
 				var z = d3.interpolate(d.startAngle, d.endAngle); 
 				return function(t) {
 					d.endAngle = z(t); 
-					console.log(d.endAngle);
 					return PieChart.arc(d);
 				}
-			})	
+			})
 
 		arcs.exit().remove();
 
@@ -79,7 +96,7 @@ PieChart._drawPie = function(el, props) {
 		text.enter()
 			.append("text")
 				.attr({
-	      			// "transform": "translate(" + props.width/2 + "," + props.height/2 + ")",
+	      			"transform": "translate(5, 10)",
 	      			"text-anchor": "middle"
 				});
 
