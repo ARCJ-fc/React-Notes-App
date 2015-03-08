@@ -25,14 +25,14 @@ describe("CommentBox", function(){
         var buttoner = TestUtils.scryRenderedDOMComponentsWithTag(comment, "button");
         
         // The first <p> should contain the text you give it
-        expect(commenttext[0].getDOMNode().textContent).toEqual(data.text);
+        expect(commenttext[0].getDOMNode().textContent).toEqual('' + data.text);
 
         // The second <p> should display the number of votes you give it
-        expect(commenttext[1].getDOMNode().textContent).toEqual(data.votes);
+        expect(commenttext[1].getDOMNode().textContent).toEqual('' + data.votes);
         
         // On clicking the upvote button, the number of votes is incremented
         TestUtils.Simulate.click(comment.refs.upvote.getDOMNode());
-        expect(commenttext[1].getDOMNode().textContent).toEqual(+data.votes+1);
+        expect(commenttext[1].getDOMNode().textContent).toEqual('' + data.votes+1);
 
     });
 });
