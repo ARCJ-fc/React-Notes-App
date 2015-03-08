@@ -2,6 +2,7 @@ var React           = require("react");
 var CommentBox      = require("./CommentBox.js");
 var CommentEdit     = require("./CommentEdit.js");
 var AnsweredBox     = require("./AnsweredBox.js");
+var AboutBox        = require("./AboutBox.js");
 
 var WhiteBoard = React.createClass({
    render: function(){
@@ -26,6 +27,9 @@ var WhiteBoard = React.createClass({
           case "answered":
             currentTab = answeredFactory;
             break;
+          case "about":
+            currentTab = <AboutBox />;
+            break
           default:
             currentTab = commentFactory;
             break;

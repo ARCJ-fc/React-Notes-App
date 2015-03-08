@@ -8,9 +8,9 @@ var ButtonGroup = React.createClass({
     render: function(){
         return (
 	        <div className="btn-toolbar" id="btnholder" role="toolbar" aria-label="...">
-			  <button className="btn-group buttons clickables" id="home" ref="home" role="group" aria-label="..." onClick={this.clickHandler}></button>
-			  <button className="btn-group buttons clickables" id="answered" ref="answered" role="group" aria-label="..." onClick={this.clickHandler}></button>
-			  <button className="btn-group buttons clickables" id="home" ref="home" role="group" aria-label="..." onClick={this.clickHandler}></button>
+			  <button className="btn-group buttons clickables" id="home" ref="home" role="group" aria-label="..." onClick={this.clickHandler}>home</button>
+			  <button className="btn-group buttons clickables" id="answered" ref="answered" role="group" aria-label="..." onClick={this.clickHandler}>answered</button>
+			  <button className="btn-group buttons clickables" id="about" ref="home" role="group" aria-label="..." onClick={this.clickHandler}>about</button>
 			</div>
 		);
     }
