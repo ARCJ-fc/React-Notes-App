@@ -1,25 +1,83 @@
-var React      = require("react");
-var WhiteBoard = require("./WhiteBoard.js");
-var PostItForm = require("./PostItForm.js");
+var React               = require("react");
+var WhiteBoard          = require("./WhiteBoard.js");
+var WhiteBoardHeader    = require("./WhiteBoardHeader.js");
+var WhiteBoardUtils    = require("./WhiteBoardUtils.js");
 
 var WhiteBoardApp = React.createClass({
     getInitialState: function() {
-        return {data: [{text: "hello", votes: '1'}, {text: "goodbye", votes: '0'}, {text: "cya", votes: '2'}, {text: "joy", votes: '4'}, {text: "lolz", votes: '19'}]};  
+        return {
+            data: [{editMode: false, text: "hello", votes: 1}, {editMode: false, text: "goodbye", votes: 0}, {editMode: false, text: "cya", votes: 2}, {editMode: false, text: "joy", votes: 4}, {editMode: false, text: "lolz", votes: 19}].sort(this.voteSort),
+            answered: []
+        };  
+    },
+    answeredComment: function(x) {
+        var answered = this.state.answered;
+        var newData = [];
+        this.state.data.forEach(function(ele) {
+            if (x.text !== ele.text) {
+                return newData.push(ele);
+            } 
+            answered.push(x);
+        });
+        this.setState({data: newData, answered: answered});
+
     },
     commentAdd: function(x){
-        var newComment  = {text: x.getDOMNode().value, votes: '0'}
+        if (x.getDOMNode().value === "") {return false};
+        var newComment  = {editMode: false, text: x.getDOMNode().value, votes: 0}
         var newData     = this.state.data.concat([newComment]);
         this.setState({data: newData});
     },
+    editToggle: function(x) {
+        var newData = this.state.data.map(function(ele) {
+            if (x.text === ele.text) {
+                ele.editMode = !ele.editMode;
+            }
+            return ele;
+        });
+        this.setState({data: newData});
+    },
+    confirmChanges: function(x) {
+        var newData = this.state.data.map(function(ele) {
+            if (x.text === ele.text) {
+                ele.text = x.newText;
+                ele.editMode = !ele.editMode;
+            }
+            return ele;
+        });
+        this.setState({data: newData});
+    },
+    deleteComment: function(x) {
+        var newData = [];
+        this.state.data.forEach(function(ele) {
+            if (x.text !== ele.text) {
+                return newData.push(ele);
+            } else {return false}
+        });
+        this.setState({data: newData});
+    },
+    voteSort: function(a, b) {
+            if (a.votes < b.votes) {
+                return 1;
+            } else if (a.votes > b.votes) {
+                return -1;
+            } else {return 0};
+    },
     upVote: function(x){
-        // console.log(this.props);
-        return false;
+        var newData = this.state.data.map(function(ele) {
+            if (x.text === ele.text) {
+                ele.votes += 1;
+            }
+            return ele;
+        }).sort(this.voteSort);
+        this.setState({data: newData});
     },
     render: function(){
         return (
             <div className="whiteBoardApp">
-                <PostItForm commentAdd={this.commentAdd} />
-                <WhiteBoard data={this.state.data} upVote={this.upVote}/>
+                <WhiteBoardHeader text={"the-whiteboard"} />
+                <WhiteBoardUtils data={this.state.data}  answered={this.state.answered} commentAdd={this.commentAdd} />
+                <WhiteBoard data={this.state.data} upVote={this.upVote} editToggle={this.editToggle} answeredComment={this.answeredComment} confirmChanges={this.confirmChanges} deleteComment={this.deleteComment} />
             </div>
         );
     }
