@@ -4,13 +4,34 @@ body {
     background-color: floralwhite;
 }
 
+.about>.comment>p,
+.about>.comment>.editBox {
+    font-size: 20px;
+    background-color: #4ECAC5;
+}
+
+.about>.comment>p.voteNum {
+    background-color: white;
+}
+
+.about>.comment>button.glyphicon{
+    background-color: #4ECAC5;
+}
+
+.editor>::-webkit-input-placeholder {
+   color: black;
+   font-size: 20px;
+}
+
+
 h1 {
-    font-size: 30px;
-    padding-top: 10px;
+    font-size: 36px;
+    padding-top: 5px;
     padding-left: 10px;
     display: inline-block;
     width: auto;
     text-decoration: underline;
+    margin-left: 99px;
 }
 
 h1:hover {
@@ -21,6 +42,7 @@ h1:hover {
     width: 100%;
     float: right;
     min-height: 89px;
+    font-size: 25px;
 /*    border: 1px solid lightgray;*/
     border-radius: 10px;
     margin-top: 3px;
@@ -37,7 +59,7 @@ h1:hover {
     border-radius: 10px;
     position: relative;
     top: 50%;
-    transform: translateY(25%);
+    transform: translateY(20%);
     background-color: #4eca7d;
 /*    background-color: hsla(120, 95%, 73%, 1);*/
     font-size: 40px;
@@ -49,7 +71,7 @@ button:hover {
 }
 .button.activeButton {
     top: 0%;
-    transform: translateY(-30%);
+    transform: translateY(-39%);
 }
 
 .voteNum {
@@ -67,7 +89,7 @@ button:hover {
     height: 30px;
     border-radius: 10px;
     position: relative;
-    background-color: #e9ebeb;
+    background-color: white;
     font-size: 20px; 
     border: none;
 }
@@ -79,7 +101,7 @@ button:hover {
     height: 30px;
     border-radius: 10px;
     position: relative;
-    background-color: #e9ebeb;
+    background-color: white;
     font-size: 20px; 
     border: none;
     padding-left:3px;
@@ -90,15 +112,19 @@ button:hover {
     clear: left;
 }
 
+.comment.editor {
+    height: 90px;
+    font-size: 20px;
+}
+
 .editBox {
     margin-left: 5px;
     border: none;
     min-height: 70px;
     padding-left: 5px;
-    padding-top: 14px;
     background-color: whitesmoke;
     border-radius: 10px;
-    width: 78%;
+    width: 75%;
 }
 
 :focus {
@@ -172,6 +198,10 @@ p {
     padding-top:10px;
 }
 
+svg {
+    border-radius: 5px;
+}
+
 #btnholder {
     float: right;
 }
@@ -184,8 +214,7 @@ p {
     border-radius: 10px;
     border: none;
     position: relative;
-    transform: translateY(60%);
-    border-style: solid;
+    transform: translateY(51%);
     z-index: 100;
     border-bottom: none;
     border-bottom-left-radius: 0px;

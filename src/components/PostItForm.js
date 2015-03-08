@@ -9,7 +9,7 @@ var PostItForm = React.createClass({
     render: function() {
         return (
             <form className="postItForm" ref="formwrapper" onSubmit={this.eHandler}>
-                <input type="text" className="postItText" ref="postitform" />
+                <textarea type="text" className="postItText" ref="postitform" />
                 <input type="submit" className="postItSubmit" />
             </form>
         );

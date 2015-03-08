@@ -22,7 +22,8 @@ var WhiteBoardApp = React.createClass({
         this.state.data.forEach(function(ele) {
             if (x.text !== ele.text) {
                 return newData.push(ele);
-            } 
+            }
+            x.editMode = !x.editMode; 
             answered.push(x);
         });
         this.setState({data: newData, answered: answered});
