@@ -7,9 +7,15 @@ var WhiteBoardApp = React.createClass({
     getInitialState: function() {
         return {
             data: [{editMode: false, text: "hello", votes: 1}, {editMode: false, text: "goodbye", votes: 0}, {editMode: false, text: "cya", votes: 2}, {editMode: false, text: "joy", votes: 4}, {editMode: false, text: "lolz", votes: 19}].sort(this.voteSort),
-            answered: []
+            answered: [{editMode: false, text: "muah", votes: 7}],
+            tab: "home"
         };  
     },
+
+    tabSwitcher: function(x) {
+        this.setState({tab: x})
+    },
+
     answeredComment: function(x) {
         var answered = this.state.answered;
         var newData = [];
@@ -22,12 +28,26 @@ var WhiteBoardApp = React.createClass({
         this.setState({data: newData, answered: answered});
 
     },
+
+    restoreComment: function(x) {
+        var data = this.state.data;
+        var newAnswered = [];
+        this.state.answered.forEach(function(ele) {
+            if (x.text !== ele.text) {
+                return newAnswered.push(ele);
+            } 
+            data.push(x);
+        });
+        this.setState({data: data, answered: newAnswered});
+    },
+
     commentAdd: function(x){
         if (x.getDOMNode().value === "") {return false};
         var newComment  = {editMode: false, text: x.getDOMNode().value, votes: 0}
         var newData     = this.state.data.concat([newComment]);
         this.setState({data: newData});
     },
+
     editToggle: function(x) {
         var newData = this.state.data.map(function(ele) {
             if (x.text === ele.text) {
@@ -37,6 +57,7 @@ var WhiteBoardApp = React.createClass({
         });
         this.setState({data: newData});
     },
+
     confirmChanges: function(x) {
         var newData = this.state.data.map(function(ele) {
             if (x.text === ele.text) {
@@ -47,6 +68,7 @@ var WhiteBoardApp = React.createClass({
         });
         this.setState({data: newData});
     },
+
     deleteComment: function(x) {
         var newData = [];
         this.state.data.forEach(function(ele) {
@@ -56,6 +78,7 @@ var WhiteBoardApp = React.createClass({
         });
         this.setState({data: newData});
     },
+
     voteSort: function(a, b) {
             if (a.votes < b.votes) {
                 return 1;
@@ -63,6 +86,7 @@ var WhiteBoardApp = React.createClass({
                 return -1;
             } else {return 0};
     },
+
     upVote: function(x){
         var newData = this.state.data.map(function(ele) {
             if (x.text === ele.text) {
@@ -72,12 +96,13 @@ var WhiteBoardApp = React.createClass({
         }).sort(this.voteSort);
         this.setState({data: newData});
     },
+
     render: function(){
         return (
             <div className="whiteBoardApp">
-                <WhiteBoardHeader text={"the-whiteboard"} />
+                <WhiteBoardHeader text={"the-whiteboard"} tabSwitcher={this.tabSwitcher} />
                 <WhiteBoardUtils data={this.state.data}  answered={this.state.answered} commentAdd={this.commentAdd} />
-                <WhiteBoard data={this.state.data} upVote={this.upVote} editToggle={this.editToggle} answeredComment={this.answeredComment} confirmChanges={this.confirmChanges} deleteComment={this.deleteComment} />
+                <WhiteBoard tab={this.state.tab} data={this.state.data} answered={this.state.answered} upVote={this.upVote} editToggle={this.editToggle} answeredComment={this.answeredComment} confirmChanges={this.confirmChanges} deleteComment={this.deleteComment} restoreComment={this.restoreComment}/>
             </div>
         );
     }
